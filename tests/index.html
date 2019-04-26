@@ -1,0 +1,155 @@
+<html>
+<meta charset="utf-8">
+<head></head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="../src/wafu.js"></script>
+<script>
+
+    // Week name
+
+    // console.log(wafu.weekNames());
+    // console.log(wafu.weekNames(false));
+    //
+    // console.log(wafu.weekName(5));
+    // console.log(wafu.weekName(moment()));
+    //
+    // console.log(wafu.hasWeekName(6));           // true
+    // console.log(wafu.hasWeekName(moment()));    // true
+    //
+    // console.log(wafu.longWeekNames());
+    // console.log(wafu.longWeekNames(false));
+    //
+    // console.log(wafu.longWeekName(5));
+    // console.log(wafu.longWeekName(moment()));
+
+
+    // Month
+
+    // console.log(wafu.months());
+    // console.log(wafu.months(false));
+    //
+    // console.log(wafu.month(5));
+    // console.log(wafu.month(moment()));
+    // console.log(wafu.hasMonth(12)); // true
+    //
+    // console.log(wafu.oldMonths());
+    // console.log(wafu.oldMonths(false));
+    // console.log(wafu.oldMonth(5));
+    // console.log(wafu.oldMonth(moment()));
+    // console.log(wafu.hasOldMonth(12)); // true
+
+
+    // Gender
+
+    // console.log(wafu.genders());
+    // console.log(wafu.genders(true));
+    // console.log(wafu.gender(1));
+    // console.log(wafu.hasGender(2));
+
+
+    // Prefecture
+
+    // console.log(wafu.prefectures());
+    // console.log(wafu.prefectures(true));
+    // console.log(wafu.prefecture(13));
+    // console.log(wafu.prefecture(13, true));  // 短い都道府県名
+    // console.log(wafu.prefectureId('兵庫県'));  // 28
+    // console.log(wafu.prefectureId('東京'));   // 13
+    // console.log(wafu.hasPrefecture(13));
+
+
+    // Region
+
+    // console.log(wafu.regions());
+    // console.log(wafu.regionPrefectureIds());
+    // console.log(wafu.region(5));        // 関西
+    // console.log(wafu.regionId('関西'));  // 5
+    // console.log(wafu.hasRegion(3));     // true
+
+
+    // Era
+
+    // console.log(wafu.era(1989));
+    // console.log(wafu.eraYear(1989));
+    // console.log(wafu.eraYears());
+    // console.log(wafu.eraNames());
+    // console.log(wafu.eraInitials());
+    // console.log(wafu.eraSymbols());
+    // console.log(wafu.commonYear('平成元年'));
+
+
+    // Date
+
+    // console.log(wafu.date('{Y}'));
+    // console.log(wafu.date('{y}'));
+    // console.log(wafu.date('{E}'));
+    // console.log(wafu.date('{e}'));
+    // console.log(wafu.date('{m}'));
+    // console.log(wafu.date('{n}'));
+    // console.log(wafu.date('{d}'));
+    // console.log(wafu.date('{j}'));
+    // console.log(wafu.date('{G}'));
+    // console.log(wafu.date('{g}'));
+    // console.log(wafu.date('{H}'));
+    // console.log(wafu.date('{h}'));
+    // console.log(wafu.date('{i}'));
+    // console.log(wafu.date('{s}'));
+    // console.log(wafu.date('{w}'));
+    // console.log(wafu.date('{a}'));
+    // console.log(wafu.date('{Y}{m}{d}（{w}） {H}{i}'));
+    // console.log(wafu.date('{F}'));
+    // console.log(wafu.date('{f}'));
+
+    // console.log(wafu.parseDate('平成２７年05月23日（土） 20時11分29秒').format());
+    // console.log(wafu.parseDate('平成２７年05月23日（土） 20時11分').format());
+    // console.log(wafu.parseDate('平成２７年05月23日（土） 20時').format());
+    // console.log(wafu.parseDate('平成２７年05月23日（土） 20:11:29').format());
+    // console.log(wafu.parseDate('平成２７年05月23日（土） 20:11').format());
+    // console.log(wafu.parseDate('平成２７年05月23日（土）').format());
+    // console.log(wafu.parseDate('平成２７年05月').format());
+    // console.log(wafu.parseDate('平成２７年').format());
+    // console.log(wafu.parseDate('H27.5.23（土） 20時11分29秒').format());
+    // console.log(wafu.parseDate('H27.5.23（土） 20時11分').format());
+    // console.log(wafu.parseDate('H27.5.23（土） 20:11:29').format());
+    // console.log(wafu.parseDate('H27.5.23（土） 20:11').format());
+    // console.log(wafu.parseDate('H27.5.23（土）').format());
+    // console.log(wafu.parseDate('H27.5').format());
+    // console.log(wafu.parseDate('H27').format());
+
+
+    // Yen
+
+    // console.log(wafu.yen(1500));
+    // console.log(wafu.yen(1500, 'noComma'));
+    // console.log(wafu.yen(1500, 'symbol'));
+    // console.log(wafu.yen(1500, 'symbolNoComma'));
+    // console.log(wafu.yen(1500, 'symbolCommaHyphen'));
+    // console.log(wafu.yen(1500, 'symbolNoCommaHyphen'));
+
+
+    // Consumption tax
+
+    // const dt = moment('1989-04-01');
+    // const amount = 1000;
+    // const totalFlag = true;
+    // console.log(wafu.consumptionTax(dt, amount));   // 30
+    // console.log(wafu.consumptionTax(dt, amount, totalFlag));    // 1030
+
+
+    // Zip
+    // console.log(wafu.zip('1234567'));
+    // console.log(wafu.zip('1234567', '_'));
+    // console.log(wafu.zip('１２３４５６７'));
+    // console.log(wafu.checkZip('123-5678'));
+
+    // to Single byte characters(全角→半角)
+
+    // console.log(wafu.singleByte('ＡＺ　０-９'));
+    // console.log(wafu.singleByte('ＡＺ　０-９', ['alphabet', 'numeric']));
+    // console.log(wafu.singleByte('ＡＺ　０-９', ['space']));
+
+</script>
+</body>
+</html>
