@@ -950,3 +950,5 @@ var wafu = {
 
     },
 };
+
+module.exports = wafu;
