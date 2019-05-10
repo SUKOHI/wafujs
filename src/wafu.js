@@ -413,11 +413,11 @@ var wafu = {
     // Era
 
     _eras: [
-        {'year': 2018, 'name': '令和', 'initial': 'R', 'symbol': 'reiwa'},
-        {'year': 1988, 'name': '平成', 'initial': 'H', 'symbol': 'heisei'},
-        {'year': 1925, 'name': '昭和', 'initial': 'S', 'symbol': 'showa'},
-        {'year': 1911, 'name': '大正', 'initial': 'T', 'symbol': 'taisho'},
-        {'year': 1867, 'name': '明治', 'initial': 'M', 'symbol': 'meiji'}
+        {'year': 2018, 'name': '令和', 'initial': 'R', 'symbol': 'reiwa', maxYear: null},
+        {'year': 1988, 'name': '平成', 'initial': 'H', 'symbol': 'heisei', maxYear: 31},
+        {'year': 1925, 'name': '昭和', 'initial': 'S', 'symbol': 'showa', maxYear: 64},
+        {'year': 1911, 'name': '大正', 'initial': 'T', 'symbol': 'taisho', maxYear: 15},
+        {'year': 1867, 'name': '明治', 'initial': 'M', 'symbol': 'meiji', maxYear: 45}
     ],
 
     era(year) {
@@ -469,6 +469,45 @@ var wafu = {
         }
 
         return eraYears;
+
+    },
+
+    eraYearOptions(symbol) {
+
+        const maxYears = wafu.maxEraYears();
+        let options = {};
+
+        if(maxYears[symbol] !== undefined) {
+
+            let maxYear = maxYears[symbol];
+
+            for(let i = 1 ; i <= maxYear ; i++) {
+
+                options[i] = (i === 1) ? '元年' : i +'年';
+
+            }
+
+        }
+
+        return options;
+
+    },
+
+    maxEraYears() {
+
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        let maxYears = {};
+
+        for(let i in wafu._eras) {
+
+            let era = wafu._eras[i];
+            let maxYear = (era.maxYear > 0) ? era.maxYear : currentYear - era.year;
+            maxYears[era.symbol] = maxYear;
+
+        }
+
+        return maxYears;
 
     },
 

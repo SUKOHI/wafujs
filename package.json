@@ -1,6 +1,6 @@
 {
   "name": "wafujs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Javascript library for Japan-related data.",
   "main": "dist/wafu.js",
   "scripts": {

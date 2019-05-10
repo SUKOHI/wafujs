@@ -168,6 +168,13 @@
     wafu.commonYear('平成元年');
     // 1989
     
+    wafu.maxEraYears();
+    // {reiwa: 1, heisei: 31, showa: 64, taisho: 15, meiji: 45}
+    
+    wafu.eraYearOptions('heisei');  // the argument is symbol of era name.
+    {1: "元年", 2: "2年", ... , 29: "29年", 30: "30年", 31: "31年"}
+
+    
 **日付**
 
     /*** 日付の取得 ***/
