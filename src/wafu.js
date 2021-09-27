@@ -413,27 +413,47 @@ var wafu = {
     // Era
 
     _eras: [
-        {'year': 2018, 'name': '令和', 'initial': 'R', 'symbol': 'reiwa', maxYear: null},
-        {'year': 1988, 'name': '平成', 'initial': 'H', 'symbol': 'heisei', maxYear: 31},
-        {'year': 1925, 'name': '昭和', 'initial': 'S', 'symbol': 'showa', maxYear: 64},
-        {'year': 1911, 'name': '大正', 'initial': 'T', 'symbol': 'taisho', maxYear: 15},
-        {'year': 1867, 'name': '明治', 'initial': 'M', 'symbol': 'meiji', maxYear: 45}
+        { year: 2018, name: '令和', initial: 'R', symbol: 'reiwa', maxYear: null, startDate: '2019-05-01' },
+        { year: 1988, name: '平成', initial: 'H', symbol: 'heisei', maxYear: 31, startDate: '1989-01-08' },
+        { year: 1925, name: '昭和', initial: 'S', symbol: 'showa', maxYear: 64, startDate: '1926-12-25' },
+        { year: 1911, name: '大正', initial: 'T', symbol: 'taisho', maxYear: 15, startDate: '1912-07-30' },
+        { year: 1867, name: '明治', initial: 'M', symbol: 'meiji', maxYear: 45, startDate: '1868-01-25' }
     ],
 
-    era(year) {
+    era(time) {
 
-        year = parseInt(year);
+        const isStrict = (time instanceof moment);
+        const year = (isStrict === true) ? time.year() : parseInt(time);
 
         for(let i in wafu._eras) {
 
+            i = parseInt(i);
             let era = wafu._eras[i];
-            let baseYear = era.year;
-            let eraName = era.name;
+            const baseYear = era.year;
 
             if(year > baseYear) {
 
                 let eraYear = year - baseYear;
-                let eraYearCorrected = (eraYear === 1) ? '元' : eraYear;
+
+                if(isStrict === true) {
+
+                    const startDt = moment(era.startDate);
+
+                    if(time < startDt) {
+
+                        try {
+
+                            era = wafu._eras[i + 1];
+                            eraYear = era.maxYear;
+
+                        } catch(e) {}
+
+                    }
+
+                }
+
+                const eraName = era.name;
+                const eraYearCorrected = (eraYear === 1) ? '元' : eraYear;
                 return {
                     'name': eraName,
                     'year': eraYear,
@@ -450,9 +470,9 @@ var wafu = {
 
     },
 
-    eraYear(year) {
+    eraYear(time) {
 
-        let era = wafu.era(year);
+        let era = wafu.era(time);
         return era.full;
 
     },
@@ -613,6 +633,7 @@ var wafu = {
         format = format.replace(pattern, (match, symbol) => {
 
             let replacedFormat = '';
+            let era = null;
 
             switch(symbol) {
 
@@ -659,10 +680,11 @@ var wafu = {
                     replacedFormat = (dateTime.format('a') === 'am') ? '午前' : '午後';
                     break;
                 case 'E':
-                    replacedFormat = wafu.eraYear(dateTime.year());
+                    era = wafu.era(dateTime);
+                    replacedFormat = era.full;
                     break;
                 case 'e':
-                    let era = wafu.era(dateTime.year());
+                    era = wafu.era(dateTime);
                     replacedFormat = '\\'+ era.initial + era.year;
                     break;
                 case 'F':
